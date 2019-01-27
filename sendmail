@@ -1,0 +1,47 @@
+#!/bin/bash
+#########################################
+#NRW Nullmailer Rewrite Wrapper
+#Sets all mails to come from user@domain.come
+#Replaces all local mail to Admin_Address, prevents that e.g. root@gmail.com gets the mail intented for you
+
+#########################################
+#Begin change here
+#Where should the mails come from
+export NULLMAILER_USER=yourmailaddress
+export NULLMAILER_HOST=yourMailDomain
+
+#Where should mails go that are directed for local users like "root" or "pi"
+Admin_Address=yourMailAdress@yourMailDomain.com
+#End change here
+#############################################
+
+export NULLMAILER_FLAGS=ft
+
+stdin=`cat`
+
+found=$(echo "$stdin" | head -n5 | grep -i ^to:.*@.*) #Search whether in To @ is present if not, we have to rewrite address. Only To: in the first 5 lines is searched
+
+if [ -z $found ]
+then
+	userToReplace=$(echo "$stdin" | head -n5 | grep -i -oP "(?<=^To: ).*")
+	stdin="${stdin/$userToReplace/$Admin_Address}"
+fi
+
+optPosition=0 #defaultvalue when not found
+
+while getopts ":f:" from; do
+    case $from in
+        f) optPosition=$OPTIND
+           break
+           ;;
+    esac
+done
+
+arguments=($@)
+
+if (($optPosition != 0)); then #-f Option was used
+ arguments[(($optPosition-2))]=$NULLMAILER_USER@$NULLMAILER_HOST
+ set -- "${arguments[@]}"
+fi
+
+echo "$stdin" | /usr/sbin/sendmail-bin "$@"
