@@ -1,6 +1,6 @@
 #!/bin/bash
 #########################################
-#NRW Nullmailer Rewrite Wrapper
+#NRW Nullmailer Rewrite Wrapper V1.2
 #Sets all mails to come from user@domain.come
 #Replaces all local mail to Admin_Address, prevents that e.g. root@gmail.com gets the mail intented for you
 
@@ -8,6 +8,9 @@
 #Changelog
 #Bugfixes, if [ -z "$found" ] '"' were missing
 #Mails to localUsers like from cron are now rewritten
+
+#Changelog V1.2 28.03.2019
+#Bugfix Mails from "root" to "root" are now re-written correctly
 
 #########################################
 #Begin change here
@@ -28,8 +31,9 @@ found=$(echo "$stdin" | head -n5 | grep -i ^to:.*@.*) #Search whether in To @ is
 
 if [ -z "$found" ]
 then
-	userToReplace=$(echo "$stdin" | head -n5 | grep -i -oP "(?<=^To: ).*")
-	stdin="${stdin/$userToReplace/$Admin_Address}"
+	userToReplace=$(echo "$stdin" | head -n5 | grep -i -P "(?<=^To: ).*")
+	replaceString="To: $Admin_Address"
+	stdin="${stdin/$userToReplace/$replaceString}"
 fi
 
 optPosition=0 #defaultvalue when not found
