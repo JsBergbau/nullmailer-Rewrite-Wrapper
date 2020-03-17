@@ -23,6 +23,6 @@ edit
 ### Configure Nullmailer
 
 Please set 
-`/etc/nullmailer/adminaddr` to your admin-address. If some program sends to "root@hostname" this address is rewritten by nullmailer. 
+`/etc/nullmailer/adminaddr` to your admin-address. If some program sends to "<user>@<hostname>" e.g. "root@mysuperhost" or "blabla@localhost" this address is rewritten by nullmailer. 
 Set `/etc/mailname` to your hostname
 
