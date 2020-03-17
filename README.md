@@ -19,3 +19,10 @@ edit
 `Admin_Address=yourMailAdress@yourMailDomain.com` eg. user1234@gmail.com
 
 `chmod --reference=sendmail-bin sendmail` to prevent normal users to make changes and intercept all mail from this host
+
+### Configure Nullmailer
+
+Please set 
+`/etc/nullmailer/adminaddr` to your admin-address. If some program sends to "root@hostname" this address is rewritten by nullmailer. 
+Set `/etc/mailname` to your hostname
+
