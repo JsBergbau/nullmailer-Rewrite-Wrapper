@@ -10,7 +10,7 @@ Execute as root (if applicable change the paths):
 `mv sendmail sendmail-bin`
 
 copy sendmail from this repository to /usr/sbin/sendmail 
-edit 
+edit the copied sendmail file at these lines: 
 
 `export NULLMAILER_USER=yourmailaddress` e.g. MailSenderUser1234
 
