@@ -15,11 +15,12 @@
 #########################################
 #Begin change here
 #Where should the mails come from
-export NULLMAILER_USER=yourmailaddress
-export NULLMAILER_HOST=yourMailDomain
+#example mail address: my@company.com
+export NULLMAILER_USER=yourmailaddressprefix  #example: my
+export NULLMAILER_HOST=yourMailDomain #example: company.com
 
 #Where should mails go that are directed for local users like "root" or "pi"
-Admin_Address=yourMailAdress@yourMailDomain.com
+Admin_Address=yourMailAdress@yourMailDomain.com # e.g. my@company.com or alertqueue@example.net This address is idependent of sender address
 #End change here
 #############################################
 
