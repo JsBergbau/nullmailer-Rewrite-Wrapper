@@ -1,6 +1,6 @@
 # nullmailer Rewrite Wrapper
 This littler wrapper script is intended to rewrite all mails to user specified from adress. 
-In addition a central address is provided where all mails for local users to to. This prevents that mails that are intented for you/root go to the wrong person, but instead to your defined email address. 
+In addition a central address is provided where all mails for local users go to. This prevents that mails that are intented for you/root go to the wrong person, but instead to your defined email address. 
 
 ## Installation instructions
 Execute as root (if applicable change the paths):
