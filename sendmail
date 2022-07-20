@@ -29,8 +29,9 @@ export NULLMAILER_FLAGS=ft
 stdin=`cat`
 
 found=$(echo "$stdin" | head -n5 | grep -i ^to:.*@.*) #Search whether in To @ is present if not, we have to rewrite address. Only To: in the first 5 lines is searched
+foundNew=$(echo "$stdin" | head -n5 | grep -i ^to:.*@${HOSTNAME}>) #Search if user@hostname is present. If we have to rewrite address. Only To: in the first 5 lines is searched
 
-if [ -z "$found" ]
+if [ -z "$found" ] || [ -z "$foundNew" ]
 then
 	userToReplace=$(echo "$stdin" | head -n5 | grep -i -P "(?<=^To: ).*")
 	replaceString="To: $Admin_Address"
