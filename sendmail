@@ -1,6 +1,6 @@
 #!/bin/bash
 #########################################
-#NRW Nullmailer Rewrite Wrapper V1.2
+#NRW Nullmailer Rewrite Wrapper V1.3
 #Sets all mails to come from user@domain.come
 #Replaces all local mail to Admin_Address, prevents that e.g. root@gmail.com gets the mail intented for you
 
@@ -11,6 +11,9 @@
 
 #Changelog V1.2 28.03.2019
 #Bugfix Mails from "root" to "root" are now re-written correctly
+
+#Changelog V1.3 05.01.2023
+#Bugfix rewriting mails for root@<hostname> works now
 
 #########################################
 #Begin change here
